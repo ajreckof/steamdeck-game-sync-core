@@ -8,7 +8,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug extension",
-            "program": "godot_4_4_1",
+            "program": "godot_4_5",
             "args": [
                 "--path",
                 "./demo",
@@ -20,10 +20,23 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug extension on scene",
-            "program": "godot_4_4_1",
+            "program": "godot_4_4_1_debug",
             "args": [
-                "--upwards",
+                "--path",
+                "./demo",
                 "${input:pickerInput}",
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "generate project"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug extension on main scene",
+            "program": "godot_4_4_1_debug",
+            "args": [
+                "--path",
+                "./demo",
             ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "generate project"

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://chrgdgq5b6mdv"]
+
+[ext_resource type="Texture2D" uid="uid://7kr1f4fthkbt" path="res://asset/folder_select.svg" id="1_k28x6"]
+[ext_resource type="Script" uid="uid://umiaw1jwu8e4" path="res://editors/folder_editor/folder_editor.gd" id="1_lxl4i"]
+
+[node name="FolderEditor" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_lxl4i")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+icon = ExtResource("1_k28x6")
+expand_icon = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+file_mode = 2
+access = 2
+
+[connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://do5ljqxk1vecd"]
+
+[ext_resource type="Script" uid="uid://c5ccowinu8ord" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cwyspkxi16vvn" path="res://asset/scan_folder.svg" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://c4xgb0ye4svlu" path="res://asset/save.svg" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://dgi3fof2ye3mw" path="res://asset/add_folder.svg" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://csbnctd1yom0" path="res://asset/settings.svg" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://easgmi02uepm" path="res://settings/settings.tscn" id="6_272bh"]
+
+[node name="Main" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="SaveShortcuts" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 0)
+layout_mode = 2
+text = "Save Shortcuts
+"
+icon = ExtResource("2_lquwl")
+expand_icon = true
+
+[node name="ScanFolder" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(155, 0)
+layout_mode = 2
+text = "Scan Folders"
+icon = ExtResource("2_1bvp3")
+
+[node name="AddByFolder" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+text = "Add by folder"
+icon = ExtResource("3_lquwl")
+
+[node name="Settings" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Settings"
+icon = ExtResource("5_7mycd")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="FileDialog" type="FileDialog" parent="."]
+access = 2
+
+[node name="Settings" parent="." instance=ExtResource("6_272bh")]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveShortcuts" to="." method="_on_save_shortcuts_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddByFolder" to="." method="_on_add_by_folder_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="canceled" from="Settings" to="Settings" method="_on_canceled"]
+[connection signal="confirmed" from="Settings" to="Settings" method="_on_confirmed"]

@@ -1,0 +1,3 @@
+extends Shortcut
+
+var action

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://g2rs7alws55g"]
+
+[ext_resource type="Script" uid="uid://nyiklsfuingw" path="res://editors/executable_editor/executable_editor.gd" id="1_dt7vv"]
+
+[node name="ExecutableEditor" type="OptionButton"]
+script = ExtResource("1_dt7vv")

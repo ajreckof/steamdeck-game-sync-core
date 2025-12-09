@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxf4eg5fl6g08"]
+
+[ext_resource type="Script" uid="uid://c5b8gn4c2ooqe" path="res://editors/name_editor/name_editor.gd" id="1_ggr3s"]
+[ext_resource type="Script" uid="uid://cygkadcpul5pg" path="res://editors/app_name_edit.gd" id="2_3lpor"]
+[ext_resource type="Texture2D" uid="uid://b4cbxb0s4vckb" path="res://asset/edit.svg" id="3_cq40o"]
+
+[node name="NameEditor" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggr3s")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="AppNameEdit" type="SuggestionLineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("2_3lpor")
+
+[node name="EditButton" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("3_cq40o")
+expand_icon = true
+
+[connection signal="text_submitted" from="AppNameEdit" to="." method="_on_app_name_edit_text_submitted"]
+[connection signal="pressed" from="EditButton" to="." method="_on_edit_button_pressed"]
