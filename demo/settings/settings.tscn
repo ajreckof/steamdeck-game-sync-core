@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://easgmi02uepm"]
+
+[ext_resource type="Script" uid="uid://dpp0dsvgt8hjc" path="res://settings/settings.gd" id="1_iirne"]
+
+[node name="Settings" type="ConfirmationDialog"]
+oversampling_override = 1.0
+title = "Settings"
+position = Vector2i(200, 150)
+size = Vector2i(800, 300)
+ok_button_text = "Save"
+script = ExtResource("1_iirne")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 792.0
+offset_bottom = 251.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SteamGridDb API Key"
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
+[connection signal="focus_exited" from="ScrollContainer/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://bauhm3f2i3klf"]
+
+[ext_resource type="Texture2D" uid="uid://l3ijldlu2iem" path="res://asset/image-search.svg" id="1_f2hta"]
+[ext_resource type="Script" uid="uid://b53dhstvtheyo" path="res://editors/image_editor/image_editor.gd" id="1_y37vc"]
+[ext_resource type="Script" uid="uid://cvae84uw2snx3" path="res://editors/image_editor/texture_rect_tooltip_full_image.gd" id="2_wojtx"]
+[ext_resource type="Script" uid="uid://ce4qy3dwb4teu" path="res://editors/image_editor/image_selector.gd" id="4_gmetx"]
+[ext_resource type="Script" uid="uid://c2n34bic2xmc" path="res://editors/image_editor/image_preview.gd" id="5_6f5pq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmetx"]
+bg_color = Color(0, 0, 0, 0.19607843)
+
+[node name="ImageEditor" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -710.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y37vc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tooltip_text = "t"
+expand_mode = 5
+stretch_mode = 5
+script = ExtResource("2_wojtx")
+
+[node name="SearchImageButton" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+icon = ExtResource("1_f2hta")
+expand_icon = true
+
+[node name="ImageSelector" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(1000, 600)
+script = ExtResource("4_gmetx")
+
+[node name="Control" type="Control" parent="ImageSelector"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 992.0
+offset_bottom = 551.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="ImageSelector/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="ImageSelector/Control/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_columns = 6
+fixed_icon_size = Vector2i(64, 64)
+
+[node name="ImagePreview" type="Control" parent="ImageSelector/Control/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("5_6f5pq")
+
+[node name="TextureRect" type="TextureRect" parent="ImageSelector/Control/HSplitContainer/ImagePreview"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.73
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ImageSelector/Control/HSplitContainer/ImagePreview"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "style : {style}
+size : {size}
+notes : {notes}"
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="ImageSelector/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmetx")
+text = "Aucun identifiant SteamGridDB! ajouté en un pour pouvoir choisir une image."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="SearchImageButton" to="." method="_on_search_image_button_pressed"]
+[connection signal="confirmed" from="ImageSelector" to="ImageSelector" method="_on_confirmed"]
+[connection signal="image_selected" from="ImageSelector" to="." method="_on_image_selector_image_selected"]
+[connection signal="item_activated" from="ImageSelector/Control/HSplitContainer/ItemList" to="ImageSelector" method="_on_item_list_item_activated"]
+[connection signal="item_selected" from="ImageSelector/Control/HSplitContainer/ItemList" to="ImageSelector" method="_on_item_list_item_selected"]

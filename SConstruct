@@ -5,8 +5,8 @@ import sys
 from methods import print_error
 
 
-libname = "project_name_placeholder"
-projectdir = "demo/addons/project_name_placeholder"
+libname = "steamdeck-game-sync-core"
+projectdir = "demo/addons/steamdeck-game-sync-core"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
 
@@ -38,8 +38,8 @@ Run the following command to download godot-cpp:
 env = SConscript("godot-cpp/SConstruct", {"env": env, "customs": customs})
 
 env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
-
+sources = Glob("src/*.cpp") + Glob("src/*/*.cpp")
+    
 if env["target"] in ["editor", "template_debug"]:
     try:
         doc_data = env.GodotCPPDocData("src/gen/doc_data.gen.cpp", source=Glob("doc_classes/*.xml"))

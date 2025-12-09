@@ -9,7 +9,9 @@
                 "/Users/tbonhoure/Godot/godot-cpp/gdextension",
                 "${workspaceFolder}/src/**"
             ],
-            "defines": [],
+            "defines": [
+                "UNIX_ENABLED"
+            ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++17",

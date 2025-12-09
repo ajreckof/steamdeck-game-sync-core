@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://puhkmbpb5cqn"]
+
+[ext_resource type="Script" uid="uid://v2wfcleox36j" path="res://editors/cell_title/cell_title.gd" id="1_iat0f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq6lk"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.72, 0.72, 0.72, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="CellTitle" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 96.0
+offset_bottom = 23.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wq6lk")
+script = ExtResource("1_iat0f")
+title = "Test ezzbzbefkefbejzb"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Test ezzbzbefkefbejzb"
