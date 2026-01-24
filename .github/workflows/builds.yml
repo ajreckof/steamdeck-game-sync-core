@@ -177,6 +177,8 @@ jobs:
         with:
           name: steamdeck-game-sync-core_plugin_demo
           path: ./
+      - name: Show directory tree
+        run: tree
     
       - name: export game
         id: export
